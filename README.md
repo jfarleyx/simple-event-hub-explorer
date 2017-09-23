@@ -22,6 +22,6 @@ To read messages also requires an Azure Storage Account. The storage account is 
 * Storage Container name
 * Storage Account Key
 
-If you would prefer not to re-enter your connection settings each time you run the app, then simply open the App.config and add your connection settings to the appropriate keys in the appSettings area of the configuration file. 
+If you would prefer not to re-enter your connection settings each time you run the app, then simply open the App.config and add your connection settings to the appropriate keys in the appSettings area of the configuration file. Then, when the app starts it will automatically load those settings into the form. 
 
 
