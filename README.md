@@ -1,8 +1,5 @@
 # simple-event-hub-explorer
-A simple Windows forms app for sending messages to or reading messages from an Azure Event Hub. 
-
-Simple Event Hub Explorer was created to assist developers with quickly and easily reviewing data payloads that are sent to 
-an Azure Event Hub. Messages are read and displayed in a textbox on the form.  
+Simple Event Hub Explorer was created to assist developers or testers with quickly and easily reviewing data payloads in an Azure Event Hub. Event Hub messages are shown in a textbox on the form. 
 
 <img width="526" alt="screenshot" src="https://user-images.githubusercontent.com/7269437/30768825-a892ca98-9fd3-11e7-934d-0a4a72882a78.png">
 
