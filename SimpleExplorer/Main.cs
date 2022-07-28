@@ -16,6 +16,7 @@ namespace SimpleExplorer
         private bool _readerEnabled = false;
         private string _eventHubConnString;
         private string _eventHubEntityPath;
+        private string _eventHubConsumerGroupName;
         private string _storageContainerName;
         private string _storageAccountName;
         private string _storageAccountKey;
@@ -54,6 +55,13 @@ namespace SimpleExplorer
             get { return _eventHubEntityPath; }
             set { _eventHubEntityPath = value.Trim(); }
         }
+
+        private string EventHubConsumerGroupName
+        {
+            get { return _eventHubConsumerGroupName; }
+            set { _eventHubConsumerGroupName = value.Trim(); }
+        }
+
         private string StorageContainerName
         {
             get { return _storageContainerName;  }
@@ -285,6 +293,7 @@ namespace SimpleExplorer
             StorageContainerName = tbStorageContainerName.Text;
             StorageAccountName = tbStorageAccountName.Text;
             StorageAccountKey = tbStorageAccountKey.Text;
+            EventHubConsumerGroupName = tbEventHubConsumerGroupName.Text;
 
             if (string.IsNullOrWhiteSpace(EventHubConnectionString))
             {
@@ -337,7 +346,7 @@ namespace SimpleExplorer
         {
             ProcessorHost = new EventProcessorHost(
                 EventHubEntityPath,
-                PartitionReceiver.DefaultConsumerGroupName,
+                EventHubConsumerGroupName,
                 EventHubConnectionString,
                 StorageConnectionString,
                 StorageContainerName
@@ -390,12 +399,16 @@ namespace SimpleExplorer
             StorageAccountName = ConfigurationManager.AppSettings["StorageAccountName"];
             StorageContainerName = ConfigurationManager.AppSettings["StorageContainerName"];
             StorageAccountKey = ConfigurationManager.AppSettings["StorageAccountKey"];
+            var conName = ConfigurationManager.AppSettings["EventHubConsumerGroupName"];
+            conName = String.IsNullOrWhiteSpace(conName) ? PartitionReceiver.DefaultConsumerGroupName : conName;
+            EventHubConsumerGroupName = conName;
 
             tbEventHubConnectionString.Text = EventHubConnectionString;
             tbEventHubEntityPath.Text = EventHubEntityPath;
             tbStorageAccountName.Text = StorageAccountName;
             tbStorageContainerName.Text = StorageContainerName;
             tbStorageAccountKey.Text = StorageAccountKey;
+            tbEventHubConsumerGroupName.Text = EventHubConsumerGroupName;
 
             btnConnect.Enabled = true;
         }
